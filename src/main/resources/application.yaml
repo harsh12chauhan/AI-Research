@@ -1,0 +1,21 @@
+
+spring:
+  application:
+    name: ai-research
+
+  datasource:
+    url: jdbc:postgresql://localhost:5442/ai_research
+    username: ai_research
+    password: ai_research
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          timezone: UTC
+
+server:
+  port: 5000
