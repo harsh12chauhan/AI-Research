@@ -1,5 +1,6 @@
 package com.harsh.research.security;
 
+import jakarta.servlet.Filter;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -9,7 +10,9 @@ import org.springframework.security.config.annotation.web.configurers.AbstractHt
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.web.AuthenticationEntryPoint;
 import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.security.web.access.AccessDeniedHandler;
 import org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter;
 import org.springframework.web.cors.CorsConfigurationSource;
 
@@ -20,6 +23,11 @@ public class SecurityConfig {
 
     private static final int BCRYPT_STRENGTH = 12;
     private final CorsConfigurationSource corsConfigurationSource;
+
+    private final AuthenticationEntryPoint restAuthEntryPoint;
+    private final AccessDeniedHandler restAccessDeniedHandler;
+    private final RateLimitFilter rateLimitFilter;
+    private final JwtAuthFilter jwtAuthFilter;
 
     @Bean
     public PasswordEncoder passwordEncoder (){

@@ -34,6 +34,16 @@ public record ApiResponse<T>(
         );
     }
 
+    public static ApiResponse<Void> error(ApiError error, String traceId){
+        return new ApiResponse<>(
+                false,
+                null,
+                error,
+                traceId,
+                Instant.now()
+        );
+    }
+
 
 
 
