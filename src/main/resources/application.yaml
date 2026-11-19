@@ -17,5 +17,9 @@ spring:
         jdbc:
           timezone: UTC
 
+app:
+  cors:
+    allowed-origins: http://localhost:5173
+
 server:
   port: 5000
