@@ -20,7 +20,6 @@ import tools.jackson.databind.ObjectMapper;
 
 import java.io.IOException;
 import java.time.Duration;
-import java.util.Locale;
 import java.util.Optional;
 import java.util.UUID;
 import java.util.concurrent.ConcurrentHashMap;
@@ -33,7 +32,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
     private final ConcurrentHashMap<String, Bucket> buket = new ConcurrentHashMap<>();
 
     private final ObjectMapper objectMapper;
-    private final AntPathMatcher pathMatcher;
+    private final AntPathMatcher pathMatcher = new AntPathMatcher();
     private final JwtService jwtService;
 
 
@@ -121,7 +120,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
 
         String header = request.getHeader("Authorization");
 
-        if(header==null && header.startsWith("Bearer ")){
+        if(header!=null && header.startsWith("Bearer ")){
 
             Optional<AuthPrincipal> principal = jwtService.parse(header.substring(7));
 
@@ -137,7 +136,7 @@ public class RateLimitFilter extends OncePerRequestFilter {
 
         String forwarded = request.getHeader("x-forwarded-for");
 
-        if(forwarded!=null || !forwarded.isEmpty()){
+        if(forwarded!=null && !forwarded.isEmpty()){
             return forwarded.split(",")[0].trim();
         }
 

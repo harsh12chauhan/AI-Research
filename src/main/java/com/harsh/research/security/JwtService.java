@@ -5,6 +5,8 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.io.Decoders;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.context.annotation.Bean;
+import org.springframework.stereotype.Component;
 
 import javax.crypto.SecretKey;
 import java.time.Duration;
@@ -14,6 +16,7 @@ import java.util.Date;
 import java.util.Optional;
 import java.util.UUID;
 
+@Component
 public class JwtService {
 
     private final String secret = "djhfjjdnkcjsdowneowoundsljsdnjksdjcowejnuiuncjskdjosndosdcc";

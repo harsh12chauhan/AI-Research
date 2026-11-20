@@ -30,7 +30,8 @@ public class SecurityConfig {
     private final JwtAuthFilter jwtAuthFilter;
 
     @Bean
-    public PasswordEncoder passwordEncoder (){
+    public PasswordEncoder passwordEncoder(){
+
         return new BCryptPasswordEncoder(BCRYPT_STRENGTH);
     }
 
@@ -44,7 +45,7 @@ public class SecurityConfig {
         ).csrf(AbstractHttpConfigurer::disable)
                 .cors(cors -> cors.configurationSource(corsConfigurationSource))
                 .authorizeHttpRequests(authorization -> authorization.requestMatchers(
-                        "api/v1/auth/**"
+                        "/api/v1/auth/**"
                 ).permitAll().anyRequest().authenticated())
                 .exceptionHandling(exceptions -> exceptions
                         .authenticationEntryPoint(restAuthEntryPoint)
