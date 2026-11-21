@@ -21,5 +21,15 @@ app:
   cors:
     allowed-origins: http://localhost:5173
 
+  storage:
+    endpoint: https://s3.eu-central-003.backblazeb2.com
+    region: eu-central-003
+    bucket: harsh-ai-research-bucket
+    key-prefix: harsh_research
+    key-id: 00312f3d80fdec70000000001
+    application-key: K0033kl52Xzc0qeL7KnrexNH3G2BqTI
+    path-style-access: true
+
+
 server:
   port: 5000

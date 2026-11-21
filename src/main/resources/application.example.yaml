@@ -1,0 +1,35 @@
+
+spring:
+  application:
+    name: ai-research
+
+  datasource:
+    url: jdbc:postgresql://localhost:5442/ai_research
+    username: <username>
+    password: <password>
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    open-in-view: false
+    properties:
+      hibernate:
+        jdbc:
+          timezone: UTC
+
+app:
+  cors:
+    allowed-origins: http://localhost:5173
+
+  storage:
+    endpoint: <endpoint-url>
+    region: <region>
+    bucket: harsh-ai-research-bucket
+    key-prefix: harsh_research
+    key-id: <key-id>
+    application-key: <application-key>
+    path-style-access: true
+
+
+server:
+  port: 5000
